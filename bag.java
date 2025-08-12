@@ -42,3 +42,59 @@ public interface Bag<T>{
 }
 
 
+class Bank implements Bag{
+    private Bag<Coin> coins;
+    
+    public Bank(){
+        coins = new Bag<>();
+    }
+   
+    public boolean add(Coin aCoin){
+        return coins.add(aCoin);
+    }
+    public Coin remove(){
+	return coins.remove();
+    }
+    public boolean isEmpty(){
+	return coins.isEmpty();
+    }
+}
+
+class Coin{
+    private string name;
+    private int value;
+
+    public Coin(string cName, int cValue){
+        name = cName;
+	value = cValue;
+    }
+
+    public int getValue(){
+    	return value;
+    }
+
+    public string getName(){
+        return name;
+    }
+}
+
+public class BankExample{
+    public static void main(String[] args){
+	Bank myBank = new Bank();
+	
+	addCoin(new Coin("Penny", "1"), myBank);
+	addCoin(new Coin("Nickle", "5"), myBank);
+	addCoin(new Coin("Dime", "10"), myBank);
+	addCoin(new Coin("Quarter", "25"), myBank);
+	addCoin(new Coin("Penny", "1"), myBank);	
+
+    }
+
+    public static void addCoin(Coin aCoin, Bank aBank){
+	if(aBank.add(aCoin)){
+	    System.out.println("Added a " + aCoin.getName());
+	} else{ 
+	    System.out.println("Tried to add a " + aCoin.getName() +". Operation Failed");
+	}
+    }
+}
